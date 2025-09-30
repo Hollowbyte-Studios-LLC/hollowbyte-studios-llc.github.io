@@ -4,7 +4,6 @@ name: Docker Slim
 on:
   push:
     branches:
-      - master
       - main
     paths:
       - ".github/workflows/docker-slim.yml"
@@ -12,11 +11,6 @@ on:
     workflows: ["Docker Image CI"]
     types:
       - completed
-
-# on:
-#   push:
-#     branches:
-#       - 'master'
 
 jobs:
   build:
