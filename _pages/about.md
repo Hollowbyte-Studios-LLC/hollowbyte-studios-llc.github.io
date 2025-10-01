@@ -29,7 +29,7 @@ latest_posts:
 
 HollowByte Studios LLC is a software and game development company founded by three senior engineers—Kyle Mogan, Thales Kirk, and Dana Reinhart—bringing together more than 30 years of combined experience. Our team is passionate about building resilient, maintainable software and delivering engaging, high-value content to our customers.
 
-Our debut project, WordFlurry, is a fast-paced word game built in Unity and set for release in 2027. It’s designed to challenge players and keep them on their toes with every round. Looking ahead, we plan to expand our work beyond games into innovative mobile applications. Stay tuned—this is just the beginning.
+Our debut project, WordFlurry, is a fast-paced word game built in Unity and set for release in 2026. It’s designed to challenge players and keep them on their toes with every round. Looking ahead, we plan to expand our work beyond games into innovative mobile applications. Stay tuned—this is just the beginning.
 
 Link to your favorite [subreddit](http://reddit.com). Just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
