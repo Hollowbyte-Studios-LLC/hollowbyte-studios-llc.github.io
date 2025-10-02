@@ -118,8 +118,6 @@
       this.description = ""; // 'A visual overview of neural attention...'
       this.authors = []; // Array of Author(s)
 
-      this.bibliography = new Map();
-      this.bibliographyParsed = false;
       //  {
       //    'gregor2015draw': {
       //      'title': 'DRAW: A recurrent neural network for image generation',
@@ -304,27 +302,6 @@
         slug += this.title.split(" ")[0].toLowerCase();
       }
       return slug || "Untitled";
-    }
-
-    get bibliographyEntries() {
-      return new Map(
-        this.citations.map((citationKey) => {
-          const entry = this.bibliography.get(citationKey);
-          return [citationKey, entry];
-        })
-      );
-    }
-
-    set bibliography(bibliography) {
-      if (bibliography instanceof Map) {
-        this._bibliography = bibliography;
-      } else if (typeof bibliography === "object") {
-        this._bibliography = mapFromObject(bibliography);
-      }
-    }
-
-    get bibliography() {
-      return this._bibliography;
     }
 
     static fromObject(source) {
@@ -746,21 +723,6 @@
       .replace(/{\\([a-zA-Z])}/g, (full, char) => char);
   }
 
-  function parseBibtex(bibtex) {
-    const bibliography = new Map();
-    const parsedEntries = bibtexParse.toJSON(bibtex);
-    for (const entry of parsedEntries) {
-      // normalize tags; note entryTags is an object, not Map
-      for (const [key, value] of Object.entries(entry.entryTags)) {
-        entry.entryTags[key.toLowerCase()] = normalizeTag(value);
-      }
-      entry.entryTags.type = entry.entryType;
-      // add to bibliography
-      bibliography.set(entry.citationKey, entry.entryTags);
-    }
-    return bibliography;
-  }
-
   function serializeFrontmatterToBibtex(frontMatter) {
     return `@article{${frontMatter.slug},
   author = {${frontMatter.bibtexAuthors}},
@@ -770,48 +732,6 @@
   note = {${frontMatter.url}},
   doi = {${frontMatter.doi}}
 }`;
-  }
-
-  // Copyright 2018 The Distill Template Authors
-
-  function parseBibliography(element) {
-    const scriptTag = element.firstElementChild;
-    if (scriptTag && scriptTag.tagName === "SCRIPT") {
-      if (scriptTag.type == "text/bibtex") {
-        const bibtex = element.firstElementChild.textContent;
-        return parseBibtex(bibtex);
-      } else if (scriptTag.type == "text/json") {
-        return new Map(JSON.parse(scriptTag.textContent));
-      } else {
-        console.warn("Unsupported bibliography script tag type: " + scriptTag.type);
-      }
-    } else {
-      console.warn("Bibliography did not have any script tag.");
-    }
-  }
-
-  // Copyright 2018 The Distill Template Authors
-
-  function ExtractBibliography(dom, data) {
-    const bibliographyTag = dom.querySelector("d-bibliography");
-    if (!bibliographyTag) {
-      console.warn("No bibliography tag found!");
-      return;
-    }
-
-    const src = bibliographyTag.getAttribute("src");
-    if (src) {
-      const path = data.inputDirectory + "/" + src;
-      const text = fs.readFileSync(path, "utf-8");
-      const bibliography = parseBibtex(text);
-      const scriptTag = dom.createElement("script");
-      scriptTag.type = "text/json";
-      scriptTag.textContent = JSON.stringify([...bibliography]);
-      bibliographyTag.appendChild(scriptTag);
-      bibliographyTag.removeAttribute("src");
-    }
-
-    data.bibliography = parseBibliography(bibliographyTag);
   }
 
   // Copyright 2018 The Distill Template Authors
@@ -14459,7 +14379,6 @@ distill-header .nav a {
 
   const extractors = new Map([
     ["ExtractFrontmatter", ExtractFrontmatter],
-    ["ExtractBibliography", ExtractBibliography],
     ["ExtractCitations", ExtractCitations],
   ]);
 
