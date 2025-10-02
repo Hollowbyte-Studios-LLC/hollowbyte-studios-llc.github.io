@@ -112,6 +112,8 @@
       this.description = ""; // 'A visual overview of neural attention...'
       this.authors = []; // Array of Author(s)
 
+      this.bibliography = new Map();
+      this.bibliographyParsed = false;
       //  {
       //    'gregor2015draw': {
       //      'title': 'DRAW: A recurrent neural network for image generation',
@@ -298,6 +300,27 @@
       return slug || "Untitled";
     }
 
+    get bibliographyEntries() {
+      return new Map(
+        this.citations.map((citationKey) => {
+          const entry = this.bibliography.get(citationKey);
+          return [citationKey, entry];
+        })
+      );
+    }
+
+    set bibliography(bibliography) {
+      if (bibliography instanceof Map) {
+        this._bibliography = bibliography;
+      } else if (typeof bibliography === "object") {
+        this._bibliography = mapFromObject(bibliography);
+      }
+    }
+
+    get bibliography() {
+      return this._bibliography;
+    }
+
     static fromObject(source) {
       const frontMatter = new FrontMatter();
       Object.assign(frontMatter, source);
@@ -306,6 +329,7 @@
 
     assignToObject(target) {
       Object.assign(target, this);
+      target.bibliography = objectFromMap(this.bibliographyEntries);
       target.url = this.url;
       target.doi = this.doi;
       target.githubUrl = this.githubUrl;
@@ -878,6 +902,40 @@ ${math}
     return '<span class="title">' + ent.title + "</span> ";
   }
 
+  function bibliography_cite(ent, fancy) {
+    if (ent) {
+      var cite = title_string(ent);
+      cite += link_string(ent) + "<br>";
+      if (ent.author) {
+        cite += author_string(ent, "${L}, ${I}", ", ", " and ");
+        if (ent.year || ent.date) {
+          cite += ", ";
+        }
+      }
+      if (ent.year || ent.date) {
+        cite += (ent.year || ent.date) + ". ";
+      } else {
+        cite += ". ";
+      }
+      cite += venue_string(ent);
+      cite += doi_string(ent);
+      return cite;
+      /*var cite =  author_string(ent, "${L}, ${I}", ", ", " and ");
+      if (ent.year || ent.date){
+        cite += ", " + (ent.year || ent.date) + ". "
+      } else {
+        cite += ". "
+      }
+      cite += "<b>" + ent.title + "</b>. ";
+      cite += venue_string(ent);
+      cite += doi_string(ent);
+      cite += link_string(ent);
+      return cite*/
+    } else {
+      return "?";
+    }
+  }
+
   function hover_cite(ent) {
     if (ent) {
       var cite = "";
@@ -1086,6 +1144,7 @@ ${math}
   const Controller = {
     frontMatter: frontMatter,
     waitingOn: {
+      bibliography: [],
       citations: [],
     },
     listeners: {
@@ -1099,8 +1158,17 @@ ${math}
           return;
         }
 
+        // ensure we have a loaded bibliography
+        if (!frontMatter.bibliographyParsed) {
+          // console.debug('onCiteKeyCreated, but unresolved dependency ("bibliography"). Enqueing.');
+          Controller.waitingOn.bibliography.push(() => Controller.listeners.onCiteKeyCreated(event));
+          return;
+        }
+
         const numbers = keys.map((key) => frontMatter.citations.indexOf(key));
         citeTag.numbers = numbers;
+        const entries = keys.map((key) => frontMatter.bibliography.get(key));
+        citeTag.entries = entries;
       },
 
       onCiteKeyChanged() {
@@ -1112,6 +1180,15 @@ ${math}
         for (const waitingCallback of Controller.waitingOn.citations.slice()) {
           waitingCallback();
         }
+
+        // update bibliography
+        const citationListTag = document.querySelector("d-citation-list");
+        const bibliographyEntries = new Map(
+          frontMatter.citations.map((citationKey) => {
+            return [citationKey, frontMatter.bibliography.get(citationKey)];
+          })
+        );
+        citationListTag.citations = bibliographyEntries;
 
         const citeTags = document.querySelectorAll("d-cite");
         for (const citeTag of citeTags) {
@@ -1126,6 +1203,40 @@ ${math}
 
       onCiteKeyRemoved(event) {
         Controller.listeners.onCiteKeyChanged(event);
+      },
+
+      onBibliographyChanged(event) {
+        const citationListTag = document.querySelector("d-citation-list");
+
+        const bibliography = event.detail;
+
+        frontMatter.bibliography = bibliography;
+        frontMatter.bibliographyParsed = true;
+        for (const waitingCallback of Controller.waitingOn.bibliography.slice()) {
+          waitingCallback();
+        }
+
+        // ensure we have citations
+        if (!frontMatter.citationsCollected) {
+          Controller.waitingOn.citations.push(function () {
+            Controller.listeners.onBibliographyChanged({
+              target: event.target,
+              detail: event.detail,
+            });
+          });
+          return;
+        }
+
+        if (citationListTag.hasAttribute("distill-prerendered")) {
+          console.debug("Citation list was prerendered; not updating it.");
+        } else {
+          const entries = new Map(
+            frontMatter.citations.map((citationKey) => {
+              return [citationKey, frontMatter.bibliography.get(citationKey)];
+            })
+          );
+          citationListTag.citations = entries;
+        }
       },
 
       onFootnoteChanged() {
@@ -1194,6 +1305,12 @@ ${math}
         frontMatter.citationsCollected = true;
         for (const waitingCallback of Controller.waitingOn.citations.slice()) {
           waitingCallback();
+        }
+
+        if (frontMatter.bibliographyParsed) {
+          for (const waitingCallback of Controller.waitingOn.bibliography.slice()) {
+            waitingCallback();
+          }
         }
 
         const footnotesList = document.querySelector("d-footnote-list");
@@ -1833,6 +1950,21 @@ d-appendix > distill-appendix {
       .replace(/{\\([a-zA-Z])}/g, (full, char) => char);
   }
 
+  function parseBibtex(bibtex) {
+    const bibliography = new Map();
+    const parsedEntries = bibtexParse.toJSON(bibtex);
+    for (const entry of parsedEntries) {
+      // normalize tags; note entryTags is an object, not Map
+      for (const [key, value] of Object.entries(entry.entryTags)) {
+        entry.entryTags[key.toLowerCase()] = normalizeTag(value);
+      }
+      entry.entryTags.type = entry.entryType;
+      // add to bibliography
+      bibliography.set(entry.citationKey, entry.entryTags);
+    }
+    return bibliography;
+  }
+
   function serializeFrontmatterToBibtex(frontMatter) {
     return `@article{${frontMatter.slug},
   author = {${frontMatter.bibtexAuthors}},
@@ -1842,6 +1974,83 @@ d-appendix > distill-appendix {
   note = {${frontMatter.url}},
   doi = {${frontMatter.doi}}
 }`;
+  }
+
+  // Copyright 2018 The Distill Template Authors
+
+  class Bibliography extends HTMLElement {
+    static get is() {
+      return "d-bibliography";
+    }
+
+    constructor() {
+      super();
+
+      // set up mutation observer
+      const options = {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      };
+      const observer = new MutationObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.target.nodeName === "SCRIPT" || entry.type === "characterData") {
+            this.parseIfPossible();
+          }
+        }
+      });
+      observer.observe(this, options);
+    }
+
+    connectedCallback() {
+      requestAnimationFrame(() => {
+        this.parseIfPossible();
+      });
+    }
+
+    parseIfPossible() {
+      const scriptTag = this.querySelector("script");
+      if (!scriptTag) return;
+      if (scriptTag.type == "text/bibtex") {
+        const newBibtex = scriptTag.textContent;
+        if (this.bibtex !== newBibtex) {
+          this.bibtex = newBibtex;
+          const bibliography = parseBibtex(this.bibtex);
+          this.notify(bibliography);
+        }
+      } else if (scriptTag.type == "text/json") {
+        const bibliography = new Map(JSON.parse(scriptTag.textContent));
+        this.notify(bibliography);
+      } else {
+        console.warn("Unsupported bibliography script tag type: " + scriptTag.type);
+      }
+    }
+
+    notify(bibliography) {
+      const options = { detail: bibliography, bubbles: true };
+      const event = new CustomEvent("onBibliographyChanged", options);
+      this.dispatchEvent(event);
+    }
+
+    /* observe 'src' attribute */
+
+    static get observedAttributes() {
+      return ["src"];
+    }
+
+    receivedBibtex(event) {
+      const bibliography = parseBibtex(event.target.response);
+      this.notify(bibliography);
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      var oReq = new XMLHttpRequest();
+      oReq.onload = (e) => this.receivedBibtex(e);
+      oReq.onerror = () => console.warn(`Could not load Bibtex! (tried ${newValue})`);
+      oReq.responseType = "text";
+      oReq.open("GET", newValue, true);
+      oReq.send();
+    }
   }
 
   // Copyright 2018 The Distill Template Authors
@@ -2091,6 +2300,39 @@ d-citation-list .references .title {
   font-weight: 500;
 }
 `;
+
+  function renderCitationList(element, entries, dom = document) {
+    if (entries.size > 0) {
+      element.style.display = "";
+      let list = element.querySelector(".references");
+      if (list) {
+        list.innerHTML = "";
+      } else {
+        const stylesTag = dom.createElement("style");
+        stylesTag.innerHTML = styles$1;
+        element.appendChild(stylesTag);
+
+        const heading = dom.createElement("h3");
+        heading.id = "references";
+        heading.textContent = "References";
+        element.appendChild(heading);
+
+        list = dom.createElement("ol");
+        list.id = "references-list";
+        list.className = "references";
+        element.appendChild(list);
+      }
+
+      for (const [key, entry] of entries) {
+        const listItem = dom.createElement("li");
+        listItem.id = key;
+        listItem.innerHTML = bibliography_cite(entry);
+        list.appendChild(listItem);
+      }
+    } else {
+      element.style.display = "none";
+    }
+  }
 
   class CitationList extends HTMLElement {
     static get is() {
