@@ -1,7 +1,7 @@
 ---
 layout: page
-title: project 1
-description: with background image
+title: WordFlurry
+description: A Fast Paced Word Finding Game
 img: assets/img/1.jpg
 importance: 1
 category: HollowByte Studios LLC Projects
