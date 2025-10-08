@@ -14,7 +14,6 @@ Here we will give you some tips on how to customize the website. One important t
   - [Creating new projects](#creating-new-projects)
   - [Adding some news](#adding-some-news)
   - [Adding Collections](#adding-collections)
-  - [Adding a new publication](#adding-a-new-publication)
     - [Author annotation](#author-annotation)
   - [Changing theme color](#changing-theme-color)
   - [Adding social media information](#adding-social-media-information)
