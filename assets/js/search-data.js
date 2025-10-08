@@ -398,9 +398,9 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-project-1",
-          title: 'project 1',
-          description: "with background image",
+          section: "News",},{id: "projects-wordflurry",
+          title: 'WordFlurry',
+          description: "A Fast Paced Word Finding Game",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
             },},{
@@ -408,7 +408,7 @@ ninja.data = [{
         title: 'email',
         section: 'Socials',
         handler: () => {
-          window.open("mailto:%68%6F%6C%6C%6F%77%62%79%74%65%73%74%75%64%69%6F%73%6C%6C%63@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+          window.open("mailto:%68%6F%6C%6C%6F%77%62%79%74%65%73%74%75%64%69%6F%73%6C%6C%63.%68%65%6C%70@%67%6D%61%69%6C.%63%6F%6D", "_blank");
         },
       },{
       id: 'light-theme',
