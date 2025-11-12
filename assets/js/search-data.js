@@ -9,12 +9,12 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-blog",
-          title: "blog",
-          description: "",
+  },{id: "nav-privacy-policy",
+          title: "Privacy Policy",
+          description: "Privacy Policy for WordFlurry by HollowByte Studio LLC",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/blog/";
+            window.location.href = "/privacy-policy/";
           },
         },{id: "nav-projects",
           title: "projects",
@@ -51,7 +51,7 @@ ninja.data = [{
           title: 'WordFlurry',
           description: "A Fast Paced Word Finding Game",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project/";
+              window.location.href = "/projects/1_project.html";
             },},{
         id: 'social-email',
         title: 'email',
