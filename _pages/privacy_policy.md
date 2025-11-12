@@ -2,11 +2,11 @@
 layout: page
 title: "Privacy Policy"
 permalink: /privacy-policy/
+nav: true
+nav_order: 1
 description: "Privacy Policy for WordFlurry by HollowByte Studio LLC"
 last_modified: 2025-11-11
 ---
-
-# Privacy Policy
 
 _Last updated: November 11, 2025_
 

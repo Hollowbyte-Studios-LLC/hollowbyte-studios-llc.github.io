@@ -4,7 +4,7 @@ title: projects
 permalink: /projects/
 description: Produced by HollowByte Studios LLC
 nav: true
-nav_order: 3
+nav_order: 2
 display_categories: [HollowByte Studios LLC Projects]
 horizontal: false
 ---
