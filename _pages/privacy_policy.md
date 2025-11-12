@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Privacy Policy"
+title: "privacy policy"
 permalink: /privacy-policy/
 nav: true
 nav_order: 1
