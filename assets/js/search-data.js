@@ -44,13 +44,8 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/people/";
           },
-        },{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+        },{id: "news-first-announcement-wordflurry-a-fast-paced-word-find-game-is-currently-being-developed-and-is-scheduled-for-release-in-2026-sparkles-smile",
+          title: 'First Announcement! WordFlurry - a fast-paced word find game is currently being developed...',
           description: "",
           section: "News",},{id: "projects-wordflurry",
           title: 'WordFlurry',
