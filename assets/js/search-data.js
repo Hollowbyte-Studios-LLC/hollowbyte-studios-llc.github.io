@@ -10,7 +10,7 @@ ninja.data = [{
       window.location.href = "/";
     },
   },{id: "nav-privacy-policy",
-          title: "Privacy Policy",
+          title: "privacy policy",
           description: "Privacy Policy for WordFlurry by HollowByte Studio LLC",
           section: "Navigation",
           handler: () => {
