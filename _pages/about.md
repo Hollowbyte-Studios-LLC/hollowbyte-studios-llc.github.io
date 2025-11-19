@@ -20,7 +20,6 @@ announcements:
   enabled: true # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
-
 ---
 
 HollowByte Studios LLC is a software and game development company founded by three senior engineers—Kyle Mogan, Thales Kirk, and Dana Reinhart—bringing together more than 30 years of combined experience. Our team is passionate about building resilient, maintainable software and delivering engaging, high-value content to our customers.
