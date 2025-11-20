@@ -36,16 +36,30 @@
   ],
   "skills": [
     {
-      "name": "Physics",
+      "name": "Front End",
       "level": "Master",
       "icon": "fa-solid fa-hashtag",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "HTML",
+        "CSS",
+        "Flutter",
+        "JavaScript",
+        "AJAX",
+        "Dart"
+      ]
+    },
+    {
+      "name": "Back End",
+      "level": "Master",
+      "icon": "fa-solid fa-hashtag",
+      "keywords": [
+        "Java",
+        "Kotlin",
+        "Python",
+        "C#",
+        "C",
+        "C++",
+        "PHP"
       ]
     }
   ]
