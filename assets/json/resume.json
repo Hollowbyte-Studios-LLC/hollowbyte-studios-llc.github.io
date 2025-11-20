@@ -38,28 +38,13 @@
       "name": "Front End",
       "level": "Master",
       "icon": "fa-solid fa-hashtag",
-      "keywords": [
-        "HTML",
-        "CSS",
-        "Flutter",
-        "JavaScript",
-        "AJAX",
-        "Dart"
-      ]
+      "keywords": ["HTML", "CSS", "Flutter", "JavaScript", "AJAX", "Dart"]
     },
     {
       "name": "Back End",
       "level": "Master",
       "icon": "fa-solid fa-hashtag",
-      "keywords": [
-        "Java",
-        "Kotlin",
-        "Python",
-        "C#",
-        "C",
-        "C++",
-        "PHP"
-      ]
+      "keywords": ["Java", "Kotlin", "Python", "C#", "C", "C++", "PHP"]
     }
   ]
 }
