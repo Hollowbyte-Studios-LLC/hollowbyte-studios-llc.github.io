@@ -3,30 +3,6 @@
   contents:
     - name: Full Name
       value: Kyle Mogan
-    - name: Date of Birth
-      value: 25 December 1993
-    - name: Languages
-      value: English
-
-- title: Education
-  type: time_table
-  contents:
-    - title: Bachelor of Science in Computer Science
-      institution: University of Minnesota, Twin Cities, MN, USA
-      year: 2015
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Associate of Arts
-      institution: Normandale Community College, Bloomington, MN, USA
-      year: 2012
-      description:
-        - Description 1.
-        - Description 2.
 
 - title: Experience
   type: time_table
@@ -47,17 +23,6 @@
       description:
         - Description 1.
         - Description 2.
-
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
 
 - title: Academic Interests
   type: nested_list
