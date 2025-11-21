@@ -48,6 +48,24 @@
       "level": "Expert",
       "icon": "fa-solid fa-hashtag",
       "keywords": ["GCP", "AWS", "Azure", "Kubernetes", "Docker", "GitHub Actions", "Jenkins"]
+    },
+    {
+      "name": "Data & Streaming Platforms",
+      "level": "Expert",
+      "icon": "fa-solid fa-hashtag",
+      "keywords": ["Kafka", "Pub/Sub", "Dataflow", "Databricks"]
+    },
+    {
+      "name": "AI/ML",
+      "level": "Expert",
+      "icon": "fa-solid fa-hashtag",
+      "keywords": ["NLP", "AutoML", "BigQuery ML"]
+    },
+    {
+      "name": "Monitoring & Analytics",
+      "level": "Expert",
+      "icon": "fa-solid fa-hashtag",
+      "keywords": ["Splunk", "Google Analytics"]
     }
   ],
   "certificates": [
