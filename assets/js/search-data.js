@@ -30,12 +30,12 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/repositories/";
           },
-        },{id: "nav-cv",
-          title: "cv",
-          description: "This is the curriculum vitae for HollowByte Studios LLC.",
+        },{id: "nav-contact",
+          title: "contact",
+          description: "Contact and Project information for HollowByte Studios LLC.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/cv/";
+            window.location.href = "/contact/";
           },
         },{id: "nav-people",
           title: "people",
