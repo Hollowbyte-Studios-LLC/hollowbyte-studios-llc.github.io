@@ -24,6 +24,32 @@
       "url": "https://hollowbytestudiosllc.com/projects/1_project.html"
     }
   ],
+  "skills": [
+    {
+      "name": "Back End",
+      "level": "Expert",
+      "icon": "fa-solid fa-hashtag",
+      "keywords": ["Java", "Kotlin", "Python", "C#", "C", "C++", "PHP", "Spring Boot/Batch", "Node.js"]
+    },
+    {
+      "name": "Front End",
+      "level": "Expert",
+      "icon": "fa-solid fa-hashtag",
+      "keywords": ["HTML", "CSS", "JavaScript", "AJAX", "Flutter", "Dart"]
+    },
+    {
+      "name": "Databases",
+      "level": "Expert",
+      "icon": "fa-solid fa-hashtag",
+      "keywords": ["MySQL", "PostgreSQL", "MongoDB", "Cloud Firestore"]
+    },
+    {
+      "name": "Cloud & Dev Ops",
+      "level": "Expert",
+      "icon": "fa-solid fa-hashtag",
+      "keywords": ["GCP", "AWS", "Azure", "Kubernetes", "Docker", "GitHub Actions", "Jenkins"]
+    }
+  ],
   "certificates": [
     {
       "name": "Google Cloud Certified Digital Leader",
@@ -31,20 +57,6 @@
       "issuer": "Google",
       "url": "https://cp.certmetrics.com/google/",
       "icon": "fa-solid fa-location-dot"
-    }
-  ],
-  "skills": [
-    {
-      "name": "Front End",
-      "level": "Master",
-      "icon": "fa-solid fa-hashtag",
-      "keywords": ["HTML", "CSS", "Flutter", "JavaScript", "AJAX", "Dart"]
-    },
-    {
-      "name": "Back End",
-      "level": "Master",
-      "icon": "fa-solid fa-hashtag",
-      "keywords": ["Java", "Kotlin", "Python", "C#", "C", "C++", "PHP"]
     }
   ]
 }
