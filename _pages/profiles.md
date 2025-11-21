@@ -12,19 +12,19 @@ profiles:
   - align: right
     image: prof_pic.jpg
     content: about_kyle_mogan.md
-    image_circular: false # crops the image to make it circular
+    image_circular: true # crops the image to make it circular
     more_info: >
       <p></p>
   - align: left
     image: prof_pic.jpg
     content: about_thales_kirk.md
-    image_circular: false # crops the image to make it circular
+    image_circular: true # crops the image to make it circular
     more_info: >
       <p></p>
   - align: right
     image: prof_pic.jpg
     content: about_dana_reinhart.md
-    image_circular: false # crops the image to make it circular
+    image_circular: true # crops the image to make it circular
     more_info: >
       <p></p>
 ---

@@ -7,7 +7,7 @@ subtitle: Secure. Scalable. Sustainable.
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: true # crops the image to make it circular
   more_info: >
     <p>202 N Cedar Ave</p>
     <p>STE #1</p>
