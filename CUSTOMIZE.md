@@ -22,7 +22,6 @@ Here we will give you some tips on how to customize the website. One important t
     - [Removing the blog page](#removing-the-blog-page)
     - [Removing the news section](#removing-the-news-section)
     - [Removing the projects page](#removing-the-projects-page)
-    - [Removing the repositories page](#removing-the-repositories-page)
   - [Adding Token for Lighthouse Badger](#adding-token-for-lighthouse-badger)
     - [Personal Access Token (fine-grained) Permissions for Lighthouse Badger:](#personal-access-token-fine-grained-permissions-for-lighthouse-badger)
   - [Customizing fonts, spacing, and more](#customizing-fonts-spacing-and-more)
