@@ -22,11 +22,11 @@ WordFlurry is a fast-paced and addictive word puzzle game that challenges your v
 Swipe through a grid of letters to form words before time runs out. The longer and more complex your words, the higher your score—but every second counts. Whether you’re a casual player or a word game expert, WordFlurry keeps you thinking on your feet.
 
 Features:
-•	⏱️ Timed gameplay – race against the clock to maximize your score
-•	🔤 Dynamic letter grids – every game is a new challenge
-•	🧠 Skill-based scoring – longer words earn bigger rewards
-•	📈 Progression system – improve and push your limits
-•	🏆 Leaderboards & achievements – compete and track your progress
+• ⏱️ Timed gameplay – race against the clock to maximize your score
+• 🔤 Dynamic letter grids – every game is a new challenge
+• 🧠 Skill-based scoring – longer words earn bigger rewards
+• 📈 Progression system – improve and push your limits
+• 🏆 Leaderboards & achievements – compete and track your progress
 
 Perfect for quick play sessions or longer brain-training runs, WordFlurry delivers nonstop word-building excitement.
 
