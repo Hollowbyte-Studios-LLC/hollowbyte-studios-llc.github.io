@@ -5,10 +5,10 @@ permalink: /privacy-policy/
 nav: true
 nav_order: 1
 description: "Privacy Policy for WordFlurry by HollowByte Studio LLC"
-last_modified: 2025-11-11
+last_modified: 2026-04-18
 ---
 
-_Last updated: November 11, 2025_
+_Last updated: April 18, 2026_
 
 **HollowByte Studio LLC** (“we”, “our”, “us”) built the **WordFlurry** mobile game as an entertainment application.  
 This Privacy Policy explains how we collect, use, and protect your information when you use the WordFlurry app (the “App”).
@@ -21,7 +21,7 @@ We collect certain information automatically and through third-party services to
 
 ### a. Analytics Data
 
-We use **Google Analytics for Firebase** to collect non-personal data such as:
+We use **Google Cloud Console** for analytics to collect non-personal data such as:
 
 - App usage and performance metrics
 - Device information (model, OS version, language)
@@ -46,10 +46,10 @@ AdMob may use this information to personalize ads unless you disable ad personal
 If you sign in with **Google Play Games**, Google may collect information related to your player profile and achievements.  
 This data is managed by Google and subject to Google’s Privacy Policy.
 
-### d. Future Features
+### d. In-App Purchases
 
-If **in-app purchases** are added in future versions of WordFlurry, we will update this Privacy Policy accordingly.  
-All transactions will be handled securely through Google Play.
+We offer **in-app purchases** to allow users to remove ads from the game.  
+All transactions are handled securely through Google Play.
 
 ---
 
