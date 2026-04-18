@@ -44,7 +44,7 @@ ninja.data = [{
           title: 'WordFlurry',
           description: "A Fast Paced Word Finding Game",
           section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project.html";
+              window.location.href = "/projects/wordflurry_project.html";
             },},{
         id: 'social-email',
         title: 'email',
